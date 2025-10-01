@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>{$config.6.config_value}</title>
+    <meta name="description" content="{$config.7.config_value}">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="format-detection" content="telephone=no">
+    <meta name="SKYPE_TOOLBAR" content="SKYPE_TOOLBAR_PARSER_COMPATIBLE" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/portals/eh2/icons/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/portals/rebrand/favicon32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/portals/rebrand/favicon16x16.png" />
+    <link rel="manifest" href="/images/portals/eh2/icons/manifest.json" />
+    <link rel="mask-icon" href="/images/portals/eh2/icons/safari-pinned-tab.svg" color="#37587d" />
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="robots" content="index,follow" />
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400|Lato:300,400|Fira+Sans:300,400" rel="stylesheet" data-async="true" />
+    <link href="https://fonts.googleapis.com/css?family=Gilda+Display:300,400" rel="stylesheet" data-async="true" />
+    <link href="https://fonts.googleapis.com/css?family=Oxygen:300,400" rel="stylesheet" data-async="true" />
+    <link rel="stylesheet" href="/css/owl.carousel.min.css?v={$resource_version}" data-async="true" />
+    <link rel="stylesheet" href="/css/jquery-ui.min.css?v={$resource_version}" data-async="true" />
+    <link rel="stylesheet" href="/css/style.css?v={$resource_version}" data-async="true" />
+    <link rel="stylesheet" href="/css/style1.css?v={$resource_version}" data-async="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" data-async="true" />
+</head>
+
+<body class="archive">
+    <div class="container">
+        {include file="/inc-header" /}
+        <main>
+            <article>
+                <section class="villas">
+                    <div class="wrapper" style="padding-top: 0;">
+                        <div class="row list">
+                            <div class="col">
+                                <div class="villas">
+                                    {volist name="trips_list" id="vo"}
+                                    <div>
+                                        <div class="item">
+                                            <div class="img" width="1920" height="1280">
+                                                <a href="/trips/detail.html?trips_id={$vo.trips_id}" title="{$vo.trips_title}">
+                                                    <img src="/storage/{$vo.trips_cover}" class="lazyload" alt="{$vo.trips_title}" width="1920" height="1280">
+                                                </a>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <a href="/trips/detail.html?trips_id={$vo.trips_id}"
+                                                        title="{$vo.trips_title}">
+                                                        <h2>{$vo.trips_title}</h2>
+                                                    </a>
+                                                    <a href="/trips/detail.html?trips_id={$vo.trips_id}"
+                                                        title="Explore {$vo.trips_title}">
+                                                        <div class="link">Посмотреть</div>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {/volist}
+                                </div>
+                            </div>
+                            <div class="col" style="border-left:0"></div>
+                        </div>
+                    </div>
+                </section>
+            </article>
+        </main>
+        {include file="/inc-footer" /}
+    </div>
+
+    <div class="top-arrow">Наверх</div>
+    <script src='/js/modernizr.3-5-0.min.js?v={$resource_version}' type='text/javascript'></script>
+    <script src='/js/jquery-1.12.4.min.js?v={$resource_version}' type='text/javascript'></script>
+    <script src='/js/jquery-ui.min.js?v={$resource_version}' type='text/javascript'></script>
+    <script src='/js/lazysizes.min.js?v={$resource_version}' type='text/javascript'></script>
+    <script src='/js/ls.bgset.min.js?v={$resource_version}' type='text/javascript'></script>
+    <script src='/js/ls.respimg.min.js?v={$resource_version}' type='text/javascript'></script>
+    <script src='/js/ls.unveilhooks.min.js?v={$resource_version}' type='text/javascript'></script>
+    <script src='/js/owl.carousel.min.js?v={$resource_version}' type='text/javascript'></script>
+    <script src='/js/instafeed.min.js?v={$resource_version}' type='text/javascript'></script>
+    <script src='/js/sticky-kit.min.js?v={$resource_version}' type='text/javascript'></script>
+    <script src='/js/site.js?v={$resource_version}' type='text/javascript'></script>
+</body>
+</html>

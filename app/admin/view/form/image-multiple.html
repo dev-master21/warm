@@ -1,0 +1,87 @@
+<div class="layui-form-item">
+    <label class="layui-form-label">{$title}</label>
+    <div class="layui-input-block">
+        <div class="layui-upload">
+            <button type="button" class="layui-btn layui-btn-primary layui-border-blue layui-btn-sm" id="{$field}">选择文件</button> 
+            <div class="layui-upload-list" id="{$field}_prev" style="display:flex;justify-content:flex-start;align-items:center;flex-wrap:wrap;">
+                {if isset($value)}
+                    {php} $value = json_decode($value, true); {/php}
+                    {volist name="$value" id="vo"}
+                    <div style="position:relative;margin-right:6px;font-size:12px" class="prev-item" data="{$vo.path}">
+                       <img src="{:img_thumb($vo['path'], 150, 100)}" style="height:100px">
+                       <span class="image-multiple-demo-btn layui-bg-red" style="top:10px;right:10px;" onclick="{$field}_delete(this)">删除</span>
+                       <span class="image-multiple-demo-btn layui-bg-blue" style="bottom:10px;left:10px;" onclick="{$field}_move_left(this)">左移</span>
+                       <span class="image-multiple-demo-btn layui-bg-blue" style="bottom:10px;right:10px;" onclick="{$field}_move_right(this)">右移</span>
+                    </div>
+                    {/volist}
+                {/if}
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+{$field}_serialize();
+layui.use(['upload', 'element', 'layer'],function() {
+    var $ = layui.jquery,
+    upload  = layui.upload,
+    element = layui.element,
+    layer   = layui.layer;
+    upload.render({
+        elem: '#{$field}',
+        accept: 'file',
+        url: '/admin2022.php/index/upload.html',
+        multiple: true,
+        before: function(obj){
+            layer.load(1,{shade:[0.1,'#fff']});
+        },
+        done: function(res){
+            let html = ''
+            html += '<div style="position:relative;margin-right:6px;font-size:12px" class="prev-item" data="'+res.data.file+'">'
+            html += '   <img src="/storage/'+ res.data.file +'" style="height:100px">'
+            html += '   <span class="image-multiple-demo-btn layui-bg-red" style="top:10px;right:10px;" onclick="{$field}_delete(this)">删除</span>'
+            html += '   <span class="image-multiple-demo-btn layui-bg-blue" style="bottom:10px;left:10px;" onclick="{$field}_move_left(this)">左移</span>'
+            html += '   <span class="image-multiple-demo-btn layui-bg-blue" style="bottom:10px;right:10px;" onclick="{$field}_move_right(this)">右移</span>'
+            html += '</div>'
+            $('#{$field}_prev').append(html)
+            {$field}_serialize();
+        },
+        allDone: function(res){
+            layer.closeAll('loading');
+        }
+    });
+});
+function {$field}_serialize(){
+    var {$field}_temp = [];
+    $('#{$field}_prev .prev-item').each(function(index,dom){
+        {$field}_temp.push({name:'', path:$(dom).attr('data')})
+    });
+    param_page.{$field} = JSON.stringify({$field}_temp);
+}
+function {$field}_delete(obj) {
+    $(obj).parents('.prev-item').remove()
+    {$field}_serialize()
+}
+function {$field}_move_left(obj) {
+    var item = $(obj).parents('.prev-item');
+    var temp = item.clone();
+    if( item.prev().html() ){
+        item.prev().before(temp);
+        item.remove();
+    }
+    {$field}_serialize(obj);
+}
+function {$field}_move_right(obj) {
+    var item = $(obj).parents('.prev-item');
+    var temp = item.clone();
+    if( item.next().html() ){
+        item.next().after(temp);
+        item.remove();
+    }
+    {$field}_serialize(obj);
+}
+</script>
+<style type="text/css">
+.image-multiple-demo-btn {
+    position:absolute;color:#FFF;font-size:12px;padding:2px 4px;cursor:pointer;
+}
+</style>

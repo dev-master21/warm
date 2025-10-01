@@ -1,0 +1,60 @@
+<div class="layui-form-item">
+    <label class="layui-form-label">{$title}</label>
+    <div class="layui-input-block">
+        <div class="layui-upload">
+            <button type="button" class="layui-btn layui-btn-sm layui-btn-primary" id="{$field}">请选择{:isset($tip) ? $tip : ''}</button>
+            {if isset($value)}
+            <input type="hidden" name="{$field}" id="{$field}_value" value="{$value}">
+            {else /}
+            <input type="hidden" name="{$field}" id="{$field}_value" value="">
+            {/if}
+            <div class="layui-upload-list" style="margin-bottom:0">
+                {if isset($value) && $value != ''}
+                <img class="layui-upload-img" id="{$field}_demo" style="width:90px;height:90px;" src="/storage/{$value}" onclick="window.parent.preview_img(this)">
+                {else /}
+                <img class="layui-upload-img" id="{$field}_demo" style="width:90px;height:90px;" onclick="window.parent.preview_img(this)">
+                {/if}
+            </div>
+            <div style="width:90px;">
+                <div class="layui-progress" lay-filter="{$field}_progress">
+                    <div class="layui-progress-bar" lay-percent=""></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+layui.use(['upload', 'element', 'layer'],function() {
+    var $ = layui.jquery,
+    upload = layui.upload,
+    element = layui.element,
+    layer = layui.layer;
+    // 上传
+    var uploadInst = upload.render({
+        elem: '#{$field}',
+        accept: 'file',
+        url: '/admin2022.php/index/upload.html',
+        before: function(obj) {
+            obj.preview(function(index, file, result) {
+                $('#{$field}_demo').attr('src', result);
+            });
+            element.progress('{$field}_progress', '0%');
+        },
+        done: function(res) {
+            if (res.code > 0) {
+                return layer.msg('上传失败');
+            }
+            $('#{$field}_value').val(res.data.file)
+        },
+        error: function() {
+            return layer.msg('上传失败');
+        },
+        progress: function(n, elem, e) {
+            element.progress('{$field}_progress', n + '%');
+            if (n == 100) {
+                layer.msg('上传完毕');
+            }
+        }
+    });
+});
+</script>

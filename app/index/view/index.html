@@ -1,0 +1,246 @@
+<!doctype html>
+<html id="homepage" lang="en">
+<head>
+    <title>{$config.6.config_value}</title>
+    <meta name="description" content="{$config.7.config_value}">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="format-detection" content="telephone=no">
+    <meta name="SKYPE_TOOLBAR" content="SKYPE_TOOLBAR_PARSER_COMPATIBLE" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/portals/eh2/icons/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/portals/rebrand/favicon32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/portals/rebrand/favicon16x16.png" />
+    <link rel="manifest" href="/images/portals/eh2/icons/manifest.json" />
+    <link rel="mask-icon" href="/images/portals/eh2/icons/safari-pinned-tab.svg" color="#37587d" />
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="robots" content="index,follow" />
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400|Lato:300,400|Fira+Sans:300,400" rel="stylesheet" data-async="true" />
+    <link href="https://fonts.googleapis.com/css?family=Gilda+Display:300,400" rel="stylesheet" data-async="true" />
+    <link href="https://fonts.googleapis.com/css?family=Oxygen:300,400" rel="stylesheet" data-async="true" />
+    <link rel="stylesheet" href="/css/owl.carousel.min.css?v={$resource_version}" data-async="true" />
+    <link rel="stylesheet" href="/css/jquery-ui.min.css?v={$resource_version}" data-async="true" />
+    <link rel="stylesheet" href="/css/style.css?v={$resource_version}2" data-async="true" />
+    <link rel="stylesheet" href="/css/style1.css?v={$resource_version}2" data-async="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" data-async="true" />
+</head>
+<body id="hp">
+    <div class="container">
+        {include file="/inc-header" /}
+        <main>
+            <article>
+                <section class="big-slideshow">
+                    <div class="owl">
+                        {volist name="banner" id="vo"}
+                        <div class="item">
+                            <img class="lazyload paroller-hero" data-src="/storage/{$vo.banner_picture}" />
+                        </div>
+                        {/volist}
+                    </div>
+                    <div class="headerTitle">
+                        <h1>ЖИЗНЬ.<br /> СОСТОИТ ИЗ ТАКИХ МОМЕНТОВ.</h1>
+                        <div class="navbar">
+                            <div class="dropdown">
+                                <button class="dropbtn"><a href="#"><i class="fas fa-search"></i></a>Найдите свою идеальную виллу</button>
+                            </div>
+                        </div>
+                </section>
+                <section class="elite">
+                    <div class="wrapper">
+                        <div class="group">
+                            <div class="half">
+                                <div class="elite-content">
+                                    <h3>{$config.14.config_value}</h3>
+                                    <p>{$config.15.config_value}</p>
+                                </div>
+                                <div class="btn-elite">
+                                    <a href="#elitehavens-difference" class="btn-default">Узнайте, что делает нас особенными</a>
+                                </div>
+                            </div>
+                            <div class="half">
+                                <img class="lazyload" data-src="/storage/{$config.16.config_value}" />
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="delights" id="inspired">
+                    <div class="wrapper">
+                        <div class="content">
+                            <h2>Вдохновляйтесь</h2>
+                            <p>Почувствуйте себя в окружении самых красивых мест в мире и позвольте нам окутать вас нашим сервисом.</p>
+                        </div>
+                    </div>
+                    <div class="slideshow1">
+                        <div class="slide-wrap">
+                            <div class="owl">
+                                {volist name="villas_tag" id="vo"}
+                                <div class="item">
+                                    <a href="/villas/lists.html?villas_tag_id={$vo.villas_tag_id}"><img class="lazyload paroller-hero" data-src="{:img_thumb($vo['villas_tag_image'], 680, 516)}" /></a>
+                                    <a href="/villas/lists.html?villas_tag_id={$vo.villas_tag_id}"><h4>{$vo.villas_tag_name}</h4></a>
+                                </div>
+                                {/volist}
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="elitehavens-difference" id="elitehavens-difference">
+                    <div class="wrapper">
+                        <h2>ОТЛИЧИЕ ELITE HAVENS</h2>
+                        <div class="group">
+                            <div class="half">
+                                <h5>Питание</h5>
+                                <p>Вкусная еда - основа незабываемого отдыха. Каждое блюдо в elite haven готовится с нуля и приготавливается по вашему вкусу личным шеф-поваром, используя только самые свежие ингредиенты.</p>
+                            </div>
+                            <div class="half">
+                                <h5>Персональный консьерж</h5>
+                                <p>Нет двух одинаковых отпусков в elite haven. Получите VIP-обслуживание, пока Elite Concierge избавит вас от стресса во время отдыха и добавит уникальных впечатлений, которые вы будете всегда помнить.</p>
+                            </div>
+                            <div class="half">
+                                <h5>Местный колорит</h5>
+                                <p>Увидьте красоту места глазами местного жителя. Наш персонал на месте и Elite Concierge знают каждое направление изнутри и помогут вам открыть его скрытое очарование, культуру и атмосферу за пределами обычного.</p>
+                            </div>
+                            <div class="half">
+                                <h5>Прямое бронирование</h5>
+                                <p>Владельцы вилл полностью доверяют нам и мы являемся их единственными представителями. Все другие агенты работают через нас. Бронируйте напрямую с Elite Havens для полной прозрачности, персонализированного сервиса и полной надежности.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="signature" id="signature">
+                    <div class="wrapper">
+                        <div class="signature-content"
+                            style="background-image: url(/storage/{$config.19.config_value})">
+                            <h2>{$config.17.config_value}</h2>
+                            <div class="signature-slideshow"><p>{$config.18.config_value}</p></div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="subscribe">
+                    <div class="wrapper">
+                        <div class="join"><a id="join"></a>
+                            <div class="box dark">
+                                <h3>Необычные впечатления прямо в ваш почтовый ящик.</h3>
+                                <div class="group">
+                                    <div class="half">
+                                        <p>Присоединившись к Warm Club, вы получаете:</p>
+                                        <ul>
+                                            <li>Эксклюзивные преимущества</li>
+                                            <li>Приоритетный доступ к акциям</li>
+                                            <li>Приветственную скидку 5% на следующее бронирование</li>
+                                            <li>Вдохновение для путешествий</li>
+                                        </ul>
+                                        <p>Присоединяйтесь к нашему эксклюзивному сообществу искателей убежища и будьте в курсе.</p>
+                                    </div>
+                                    <div class="half">
+                                        <form action="" method="post" onsubmit="clubs_submit(this);return false;">
+                                            <div>
+                                                <div style="width:70%; margin:0 auto; padding:0;"></div>
+                                                <input name="clubs_email" type="email" id="clubs_email" placeholder="Email address" />
+                                                <div class="subscribe-btn">
+                                                    <button type="submit">Отправить</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                        <div class="homemsg"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <script type="text/javascript">
+                                function clubs_submit(obj)
+                                {
+                                    let param_form = $(obj).serializeArray()
+                                    $.post("/index/clubs_submit.html", param_form, function (resp) {
+                                        if (resp.status == 1) {
+                                            $('#clubs_email').val('')
+                                            layer.msg(resp.msg)
+                                        } else {
+                                            layer.msg(resp.msg)
+                                        }
+                                    }, 'json');
+                                }
+                            </script>
+                        </div>
+                    </div>
+                </section>
+                <section class="hand-picked">
+                    <div class="wrapper">
+                        <h2>Отобрано Elite Havens</h2>
+                        <div class="see-villas"><a href="/villas/lists.html">Посмотреть все наши виллы</a></div>
+                    </div>
+                    <div class="slideshow2">
+                        <div class="owl">
+                            {volist name='other_list' id='vo'}
+                            <div class="item">
+                                <span>
+                                    <a href="/villas/detail.html?villas_id={$vo.villas_id}" title="{$vo.villas_name}"><img src="{:img_thumb($vo['villas_cover'], 526, 356)}" alt="{$vo.villas_name}" class='lazyload'></a>
+                                </span>
+                                <div class="content-item">
+                                    <h5 class="villa-name"><span><a href="/villas/detail.html?villas_id={$vo.villas_id}" title="{$vo.villas_name}">{$vo.villas_name}</a></span></h5>
+                                    <span class="location"><span><a href="/villas/lists.html?villas_city={$vo.villas_city}" title="Seseh-Tanah Lot">{$vo.villas_city}</a></span>
+                                </div>
+                                <ul>
+                                    <li><img src="/images/portals/rebrand/bed.svg" alt="Bedrooms" class="lazyload"></li>
+                                    <li><span>{$vo.villas_bedrooms_num} спальни</span></li>
+                                    <li><img src="/images/portals/rebrand/adult.svg" alt="Sleeps" class="lazyload" style="margin-left:15px; height:18px; margin-right:-2px; padding-top:2px; margin-bottom:-2px"></li>
+                                    <li><span>{$vo.villas_adults_num} взрослых</span></li>
+                                </ul>
+                            </div>
+                            {/volist}
+                        </div>
+                    </div>
+                </section>
+            </article>
+        </main>
+        {include file="/inc-footer" /}
+        <script type="text/javascript">
+            var highlight_dates = [];
+        </script>
+    </div>
+    <div class="top-arrow">Back to top</div>
+    <script src='/js/modernizr.3-5-0.min.js?v={$resource_version}' type='text/javascript'></script>
+    <script src='/js/jquery-1.12.4.min.js?v={$resource_version}' type='text/javascript'></script>
+    <script src='/js/jquery-ui.min.js?v={$resource_version}' type='text/javascript'></script>
+    <script src='/js/lazysizes.min.js?v={$resource_version}' type='text/javascript'></script>
+    <script src='/js/ls.bgset.min.js?v={$resource_version}' type='text/javascript'></script>
+    <script src='/js/ls.respimg.min.js?v={$resource_version}' type='text/javascript'></script>
+    <script src='/js/ls.unveilhooks.min.js?v={$resource_version}' type='text/javascript'></script>
+    <script src='/js/owl.carousel.min.js?v={$resource_version}' type='text/javascript'></script>
+    <script src='/js/instafeed.min.js?v={$resource_version}' type='text/javascript'></script>
+    <script src='/js/sticky-kit.min.js?v={$resource_version}' type='text/javascript'></script>
+    <script src='/js/video.js?v={$resource_version}' type='text/javascript'></script>
+    <script src='/js/site.js?v={$resource_version}' type='text/javascript'></script>
+    <script src='/static/layer/layer.js' type='text/javascript'></script>
+    <style>
+        .a-flash{-webkit-animation:1s ease;-moz-animation:1s ease;-ms-animation:1s ease;animation:1s ease;}
+        .a-flash{-webkit-animation-name:flash;-moz-animation-name:flash;-ms-animation-name:flash;animation-name:flash;}
+        @-webkit-keyframes flash{
+            0%,50%,100%{opacity:1;}
+            25%,75%{opacity:0;}
+        }
+        @-moz-keyframes flash{
+            0%,50%,100%{opacity:1;}
+            25%,75%{opacity:0;}
+        }
+        @-ms-keyframes flash{
+            0%,50%,100%{opacity:1;}
+            25%,75%{opacity:0;}
+        }
+        @keyframes flash{
+            0%,50%,100%{opacity:1;}
+            25%,75%{opacity:0;}
+        }
+    </style>
+    <script>
+    $(window).on("load", function() {
+        setTimeout(() => {
+            $('.navbar .dropbtn').addClass('a-flash')
+        }, 600)
+    });
+    </script>
+</body>
+</html>

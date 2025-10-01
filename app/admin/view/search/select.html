@@ -1,0 +1,8 @@
+<div class="layui-inline" style="margin-left:4px">
+    <select name="wheremap__{$field}">
+        <option value="">{$title}</option>
+        {volist name="options" id="vo"}
+        <option value="{$vo.value}" {if $vo.value == $value}selected{/if}>{$vo.name}</option>
+        {/volist}
+    </select>
+</div>
