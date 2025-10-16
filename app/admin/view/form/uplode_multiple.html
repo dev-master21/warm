@@ -1,0 +1,97 @@
+<div class="layui-form-item">
+    <label class="layui-form-label">{if isset($require) && $require == true}<b style="color:#C00;margin-right:4px">*</b>{/if}{$title}</label>
+    <div class="layui-input-block">
+        <button type="button" class="layui-btn layui-btn-primary layui-border-blue" id="{$field}_uploder">选择文件</button>
+        <div class="layui-upload-list" style="max-width: 1000px;">
+            <table class="layui-table">
+                <colgroup>
+                    <col>
+                    <col width="150">
+                    <col width="260">
+                    <col width="150">
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th>文件名</th>
+                        <th>状态</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody id="{$field}_filelist">
+                    {if isset($value)}
+                        {php} $value = json_decode($value, true); {/php}
+                        {volist name="$value" id="vo"}
+                        <tr>
+                            <td>{$vo.name}</td>
+                            <td data="{$vo.path}">已上传</td>
+                            <td><button class="layui-btn layui-btn-xs layui-btn-danger" onclick="$(this).parents('tr').remove();{$field}_get_filelist();">删除</button></td>
+                        </tr>
+                        {/volist}
+                    {/if}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+layui.use(['upload','element'],function() {
+    var upload  = layui.upload;
+    var element = layui.element;
+    var upload_tip = '';
+    var preview_file_num = 0;
+    var upload_file_num = 0;
+    upload.render({
+        elem: '#{$field}_uploder',
+        accept: 'file',
+        multiple: true,
+        url: '{:url("/index/upload")}',
+        choose: function(obj) {
+            upload_tip = layer.open({
+                type: 1,
+                title: false,
+                shadeClose: false,
+                shade: 0.8,
+                closeBtn: false,
+                content: '<div style="padding:15px 30px;font-size:16px">文件上传中，请稍后</div>'
+            });
+            var that = this;
+            var files = this.files = obj.pushFile();
+            obj.preview(function(index, file, result) {
+                $('#{$field}_filelist').append('<tr id="upload-'+index+'"><td>'+file.name+'</td><td>待上传</td><td></td></tr>');
+                preview_file_num++;
+            });
+        },
+        before: function(obj) { },
+        done: function(res, index, upload) {
+            delete this.files[index];
+            upload_file_num++;
+
+            $('#upload-'+index).find('td').eq(1).html('已上传').attr('data',res.data.file);
+            $('#upload-'+index).find('td').eq(2).html('<button class="layui-btn layui-btn-xs layui-btn-danger" onclick="$(this).parents(\'tr\').remove();{$field}_get_filelist();">删除</button>');
+
+            {$field}_get_filelist();
+
+            if(preview_file_num == upload_file_num){
+                layer.close(upload_tip)
+            }
+
+            return;
+        },
+        error: function() { },
+        progress: function(n, elem, e) { },
+    });
+});
+function {$field}_get_filelist(){
+    let {$field}_temp = []
+    $('#{$field}_filelist tr').each(function(index, dom){
+        if($(dom).find('td').eq(1).attr('data')){
+            {$field}_temp.push({
+                name: $(dom).find('td').eq(0).html(),
+                path: $(dom).find('td').eq(1).attr('data')
+            })
+        }
+    })
+    param_page.{$field} = JSON.stringify({$field}_temp);
+    console.log(param_page.{$field})
+}
+</script>

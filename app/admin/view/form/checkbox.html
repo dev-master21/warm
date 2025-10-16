@@ -1,0 +1,19 @@
+{php}
+if(!is_array($options)){
+    $c2 = explode(';', $options);
+    $options = [];
+    foreach($c2 as $v2){
+        $c3 = explode(':', $v2);
+        $options[] = ['name'=>$c3[1],'value'=>$c3[0]];
+    }
+}
+$value = explode(',',$value);
+{/php}
+<div class="layui-form-item">
+    <label class="layui-form-label">{if isset($require) && $require == true}<b style="color:#C00;margin-right:4px">*</b>{/if}{$title}</label>
+    <div class="layui-input-block">
+        {volist name="options" id="vo"}
+        <input lay-skin="primary" type="checkbox" lay-filter="{$field}" name="{$field}[]" value="{$vo.value}" title="{$vo.name}" {if $value != '' && in_array($vo.value,$value)}checked{/if}>
+        {/volist}
+    </div>
+</div>

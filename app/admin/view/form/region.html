@@ -1,0 +1,42 @@
+            <div class="layui-form-item">
+                <label class="layui-form-label">{if isset($require) && $require == true}<b style="color:#C00;margin-right:4px">*</b>{/if}{$title}</label>
+                <div class="layui-input-block">
+                    <div class="layui-input-inline">
+                        <select name="clue_province_id" lay-filter="province">
+                            <option value="">省</option>
+                            {volist name=":region(1)" id="vo"}
+                            <option value="{$vo.region_id}" {if isset($value.clue_province_id) && $value.clue_province_id==$vo.region_id}selected{/if}>{$vo.region_name}</option>
+                            {/volist}
+                        </select>
+                    </div>
+                    <div class="layui-input-inline">
+                        {if isset($value.clue_city_id) && $value.clue_city_id > 0}
+                        <select name="clue_city_id" lay-filter="city">
+                            <option value="">市</option>
+                            {volist name=":region($value['clue_province_id'])" id="vo"}
+                            <option value="{$vo.region_id}" {if isset($value.clue_city_id) && $value.clue_city_id==$vo.region_id}selected{/if}>{$vo.region_name}</option>
+                            {/volist}
+                        </select>
+                        {else /}
+                        <select name="clue_city_id" lay-filter="city" disabled>
+                            <option value="">市</option>
+                        </select>
+                        {/if}
+                    </div>
+                </div>
+            </div>
+            <script type="text/javascript">
+            layui.use(['form'],function() {
+                var form  = layui.form;
+                form.on('select(province)', function (res) {
+                    $.post("/admin2022.php/index/region", {region_pid:res.value}, function(resp){
+                        var html = ''
+                        for(let i in resp){
+                            html += '<option value="'+resp[i].region_id+'">'+resp[i].region_name+'</option>';
+                        }
+                        $("select[name=clue_city_id]").html(html).removeAttr("disabled");
+                        form.render();
+                    },'json');
+                });
+            });
+            </script>

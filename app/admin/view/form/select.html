@@ -1,0 +1,21 @@
+{php}
+if(!is_array($options)){
+    $c2 = explode(';', $options);
+    $options = [];
+    foreach($c2 as $v2){
+        $c3 = explode(':', $v2);
+        $options[] = ['name'=>$c3[1],'value'=>$c3[0]];
+    }
+}
+{/php}
+<div class="layui-form-item">
+    <label class="layui-form-label">{if isset($require) && $require == true}<b style="color:#C00;margin-right:4px">*</b>{/if}{$title}</label>
+    <div class="layui-input-block">
+        <select name="{$field}" lay-search>
+            <option value="">请选择（可输入关键字搜索）</option>
+            {volist name="options" id="vo"}
+            <option value="{$vo.value}" {if $value != '' && $value == $vo.value}selected{/if}>{$vo.name}</option>
+            {/volist}
+        </select>
+    </div>
+</div>

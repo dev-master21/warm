@@ -1,0 +1,29 @@
+<script src="/static/xm-select.js" charset="utf-8"></script>
+<div class="layui-col-xs6 layui-col-sm6 layui-col-md6">
+    <div class="layui-form-item">
+        <label class="layui-form-label" name="{$field}">{$title}</label>
+        <div class="layui-input-block">
+            <div id="demo2"></div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+	var field = <?php echo json_encode($field); ?>;
+    var optionsString = <?php echo json_encode($value); ?>;
+
+    var demo2 = xmSelect.render({
+		el: '#demo2', 
+		name: field,
+		model: { label: { type: 'text' } },
+		radio: false,
+		clickClose: false,
+		tree: {
+			show: true,
+			strict: false,
+			expandedKeys: [ -1 ],
+		},
+		height: '400px',
+		filterable: true,
+		data: optionsString,
+    })
+</script>
